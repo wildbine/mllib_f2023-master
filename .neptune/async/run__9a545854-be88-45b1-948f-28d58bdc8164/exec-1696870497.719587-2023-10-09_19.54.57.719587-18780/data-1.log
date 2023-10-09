@@ -1,0 +1,188 @@
+{"obj": {"type": "AssignString", "path": ["sys", "name"], "value": "Reg0.04137666349267808_LR0.006714010504887609_FuncHash4e41fc"}, "version": 1}
+{"obj": {"type": "AssignString", "path": ["sys", "description"], "value": ""}, "version": 2}
+{"obj": {"type": "AssignString", "path": ["monitoring", "f6467f4f", "hostname"], "value": "DESKTOP-F0FFPV5"}, "version": 3}
+{"obj": {"type": "AssignString", "path": ["sys", "hostname"], "value": "DESKTOP-F0FFPV5"}, "version": 4}
+{"obj": {"type": "AssignString", "path": ["monitoring", "f6467f4f", "pid"], "value": "18780"}, "version": 5}
+{"obj": {"type": "AssignString", "path": ["monitoring", "f6467f4f", "tid"], "value": "25076"}, "version": 6}
+{"obj": {"type": "AssignBool", "path": ["sys", "failed"], "value": false}, "version": 7}
+{"obj": {"type": "ClearStringLog", "path": ["monitoring", "f6467f4f", "stdout"]}, "version": 8}
+{"obj": {"type": "ClearStringLog", "path": ["monitoring", "f6467f4f", "stderr"]}, "version": 9}
+{"obj": {"type": "AssignString", "path": ["source_code", "entrypoint"], "value": "execute.py"}, "version": 10}
+{"obj": {"type": "UploadFileSet", "path": ["source_code", "files"], "file_globs": ["D:\\PyCharmProjects\\pyProjects\\mllib_f2023-master\\execute.py"], "reset": "False"}, "version": 11}
+{"obj": {"type": "UploadFile", "path": ["source_code", "diff"], "ext": "patch", "file_path": null, "tmp_file_name": "source_code_diff-1696870497.9991-2023-10-09_19.54.57.999100.patch", "clean_after_upload": false}, "version": 12}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "f6467f4f", "cpu"], "min": 0.0, "max": 100.0, "unit": "%"}, "version": 13}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "f6467f4f", "cpu"]}, "version": 14}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "f6467f4f", "memory"], "min": 0.0, "max": 31.85687255859375, "unit": "GB"}, "version": 15}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "f6467f4f", "memory"]}, "version": 16}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "f6467f4f", "gpu"], "min": 0.0, "max": 100.0, "unit": "%"}, "version": 17}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "f6467f4f", "gpu"]}, "version": 18}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "f6467f4f", "gpu_memory"], "min": 0.0, "max": 8.0, "unit": "GB"}, "version": 19}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "f6467f4f", "gpu_memory"]}, "version": 20}
+{"obj": {"type": "AssignString", "path": ["hyperparameters", "base_function"], "value": "log_func = lambda x: np.log(x)\ncos_func = lambda x: np.cos(x)\npolynomial_func = lambda x: 5 + x + x**2"}, "version": 21}
+{"obj": {"type": "AssignFloat", "path": ["hyperparameters", "regularisation_coefficient"], "value": 0.04137666349267808}, "version": 22}
+{"obj": {"type": "AssignFloat", "path": ["hyperparameters", "learning_rate"], "value": 0.006714010504887609}, "version": 23}
+{"obj": {"type": "AssignFloat", "path": ["final_metrics", "validation_mse"], "value": 0.6281614768636004}, "version": 24}
+{"obj": {"type": "LogFloats", "path": ["valid", "mse"], "values": [{"value": 0.4507519534465054, "step": null, "ts": 1696870498.0171}]}, "version": 25}
+{"obj": {"type": "LogFloats", "path": ["valid", "cost_function"], "values": [{"value": 3.21942606935502, "step": null, "ts": 1696870498.0171}]}, "version": 26}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "cpu"], "values": [{"value": 26.6, "step": null, "ts": 1696870498.0091004}]}, "version": 27}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "memory"], "values": [{"value": 16.93838119506836, "step": null, "ts": 1696870498.0091004}]}, "version": 28}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "gpu"], "values": [{"value": 25.0, "step": null, "ts": 1696870498.0091004}]}, "version": 29}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "gpu_memory"], "values": [{"value": 1.80438232421875, "step": null, "ts": 1696870498.0091004}]}, "version": 30}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-326\n", "step": null, "ts": 1696870498.7314475}]}, "version": 31}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-327\n", "step": null, "ts": 1696870499.368314}]}, "version": 32}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-328\n", "step": null, "ts": 1696870499.9951715}]}, "version": 33}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-329\n", "step": null, "ts": 1696870500.6472893}]}, "version": 34}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-330\n", "step": null, "ts": 1696870501.3642106}]}, "version": 35}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-331\n", "step": null, "ts": 1696870502.0194213}]}, "version": 36}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-332\n", "step": null, "ts": 1696870502.6080818}]}, "version": 37}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-333\n", "step": null, "ts": 1696870503.27162}]}, "version": 38}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-334\n", "step": null, "ts": 1696870503.9182346}]}, "version": 39}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-335\n", "step": null, "ts": 1696870504.5387018}]}, "version": 40}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-336\n", "step": null, "ts": 1696870505.1977525}]}, "version": 41}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-337\n", "step": null, "ts": 1696870506.2162313}]}, "version": 42}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-338\n", "step": null, "ts": 1696870506.8532662}]}, "version": 43}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-339\n", "step": null, "ts": 1696870507.5198767}]}, "version": 44}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "cpu"], "values": [{"value": 8.9, "step": null, "ts": 1696870508.030273}]}, "version": 45}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "memory"], "values": [{"value": 16.968395233154297, "step": null, "ts": 1696870508.030273}]}, "version": 46}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "gpu"], "values": [{"value": 29.0, "step": null, "ts": 1696870508.030273}]}, "version": 47}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "gpu_memory"], "values": [{"value": 1.80438232421875, "step": null, "ts": 1696870508.030273}]}, "version": 48}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-340\n", "step": null, "ts": 1696870508.1085875}]}, "version": 49}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-341\n", "step": null, "ts": 1696870508.843522}]}, "version": 50}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-342\n", "step": null, "ts": 1696870509.459169}]}, "version": 51}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-343\n", "step": null, "ts": 1696870510.0198777}]}, "version": 52}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-344\n", "step": null, "ts": 1696870510.652141}]}, "version": 53}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-345\n", "step": null, "ts": 1696870511.3053772}]}, "version": 54}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-346\n", "step": null, "ts": 1696870511.9023185}]}, "version": 55}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-347\n", "step": null, "ts": 1696870512.4601998}]}, "version": 56}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-348\n", "step": null, "ts": 1696870513.0515857}]}, "version": 57}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-349\n", "step": null, "ts": 1696870513.5925772}]}, "version": 58}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-350\n", "step": null, "ts": 1696870514.1568072}]}, "version": 59}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-351\n", "step": null, "ts": 1696870514.7627392}]}, "version": 60}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-352\n", "step": null, "ts": 1696870515.3975747}]}, "version": 61}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870515.4395745}]}, "version": 62}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870516.1467557}]}, "version": 63}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 39 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870516.1487553}]}, "version": 64}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 39 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870516.433775}]}, "version": 65}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870516.4357738}]}, "version": 66}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-352/metadata\n", "step": null, "ts": 1696870516.4378438}]}, "version": 67}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870516.4407742}]}, "version": 68}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870516.612774}]}, "version": 69}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 26 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870516.6137738}]}, "version": 70}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 26 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870516.9033227}]}, "version": 71}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870516.9063215}]}, "version": 72}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-351/metadata\n", "step": null, "ts": 1696870516.9073215}]}, "version": 73}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870516.910322}]}, "version": 74}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870517.1373255}]}, "version": 75}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 45 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870517.140325}]}, "version": 76}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 45 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870517.4553635}]}, "version": 77}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870517.4573631}]}, "version": 78}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-350/metadata\n", "step": null, "ts": 1696870517.4593625}]}, "version": 79}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870517.4613633}]}, "version": 80}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870517.6273682}]}, "version": 81}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 40 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870517.6283681}]}, "version": 82}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 40 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870517.9783797}]}, "version": 83}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870517.9813795}]}, "version": 84}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-349/metadata\n", "step": null, "ts": 1696870517.983379}]}, "version": 85}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870517.9853792}]}, "version": 86}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "cpu"], "values": [{"value": 8.3, "step": null, "ts": 1696870518.0433788}]}, "version": 87}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "memory"], "values": [{"value": 17.006649017333984, "step": null, "ts": 1696870518.0433788}]}, "version": 88}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "gpu"], "values": [{"value": 32.0, "step": null, "ts": 1696870518.0433788}]}, "version": 89}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "f6467f4f", "gpu_memory"], "values": [{"value": 1.80438232421875, "step": null, "ts": 1696870518.0433788}]}, "version": 90}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870518.1025229}]}, "version": 91}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 55 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870518.1035233}]}, "version": 92}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 55 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870518.4145343}]}, "version": 93}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870518.4175344}]}, "version": 94}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-348/metadata\n", "step": null, "ts": 1696870518.418534}]}, "version": 95}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870518.4205341}]}, "version": 96}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870518.5812201}]}, "version": 97}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 6 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870518.584219}]}, "version": 98}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 6 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870518.7562375}]}, "version": 99}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870518.757238}]}, "version": 100}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-347/metadata\n", "step": null, "ts": 1696870518.7592382}]}, "version": 101}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870518.761238}]}, "version": 102}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870518.9752584}]}, "version": 103}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 18 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870518.9762583}]}, "version": 104}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 18 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870519.1602116}]}, "version": 105}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870519.1652122}]}, "version": 106}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-346/metadata\n", "step": null, "ts": 1696870519.1672115}]}, "version": 107}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870519.1682115}]}, "version": 108}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870519.325663}]}, "version": 109}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 30 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870519.3276584}]}, "version": 110}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 30 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870519.496657}]}, "version": 111}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870519.4986567}]}, "version": 112}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-345/metadata\n", "step": null, "ts": 1696870519.5016565}]}, "version": 113}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870519.5016565}]}, "version": 114}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870519.6896567}]}, "version": 115}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 46 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870519.6926582}]}, "version": 116}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 46 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870519.8764021}]}, "version": 117}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870519.8784015}]}, "version": 118}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-344/metadata\n", "step": null, "ts": 1696870519.8804016}]}, "version": 119}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870519.8814633}]}, "version": 120}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870520.062407}]}, "version": 121}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 58 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870520.0634072}]}, "version": 122}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 58 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870520.2574203}]}, "version": 123}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870520.2594204}]}, "version": 124}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-343/metadata\n", "step": null, "ts": 1696870520.2604203}]}, "version": 125}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870520.2624202}]}, "version": 126}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870520.3794198}]}, "version": 127}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 66 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870520.3804202}]}, "version": 128}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 66 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870520.659049}]}, "version": 129}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870520.6610475}]}, "version": 130}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-342/metadata\n", "step": null, "ts": 1696870520.6630473}]}, "version": 131}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870520.6630473}]}, "version": 132}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870520.832053}]}, "version": 133}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 16 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870520.8350532}]}, "version": 134}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 16 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870521.0010526}]}, "version": 135}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870521.0030527}]}, "version": 136}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-341/metadata\n", "step": null, "ts": 1696870521.0050516}]}, "version": 137}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870521.006052}]}, "version": 138}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870521.1260521}]}, "version": 139}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 34 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870521.1280518}]}, "version": 140}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 34 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870521.367052}]}, "version": 141}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870521.368052}]}, "version": 142}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-340/metadata\n", "step": null, "ts": 1696870521.371051}]}, "version": 143}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870521.3720515}]}, "version": 144}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870521.6180522}]}, "version": 145}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 52 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870521.619051}]}, "version": 146}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 52 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870521.7980504}]}, "version": 147}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870521.8000503}]}, "version": 148}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-339/metadata\n", "step": null, "ts": 1696870521.8020506}]}, "version": 149}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870521.8020506}]}, "version": 150}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870522.0080614}]}, "version": 151}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 64 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870522.0110614}]}, "version": 152}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 64 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870522.2850616}]}, "version": 153}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870522.287062}]}, "version": 154}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-338/metadata\n", "step": null, "ts": 1696870522.2880619}]}, "version": 155}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870522.2890613}]}, "version": 156}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870522.4050617}]}, "version": 157}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 76 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870522.406062}]}, "version": 158}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 76 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870522.6230605}]}, "version": 159}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870522.6250598}]}, "version": 160}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-337/metadata\n", "step": null, "ts": 1696870522.6260598}]}, "version": 161}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870522.6260598}]}, "version": 162}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870522.7490716}]}, "version": 163}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 18 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870522.752071}]}, "version": 164}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 18 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870522.9190743}]}, "version": 165}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870522.9200742}]}, "version": 166}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-336/metadata\n", "step": null, "ts": 1696870522.921074}]}, "version": 167}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870522.9220736}]}, "version": 168}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870523.142074}]}, "version": 169}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 28 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870523.1450734}]}, "version": 170}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 28 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870523.3140733}]}, "version": 171}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870523.3180745}]}, "version": 172}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-335/metadata\n", "step": null, "ts": 1696870523.319073}]}, "version": 173}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870523.3200731}]}, "version": 174}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870523.4330735}]}, "version": 175}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 52 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870523.436073}]}, "version": 176}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 52 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870523.5999563}]}, "version": 177}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870523.600957}]}, "version": 178}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-334/metadata\n", "step": null, "ts": 1696870523.6019561}]}, "version": 179}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870523.6029565}]}, "version": 180}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870523.8239646}]}, "version": 181}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 68 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870523.8269649}]}, "version": 182}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "All 68 operations synced, thanks for waiting!\n", "step": null, "ts": 1696870524.1058612}]}, "version": 183}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Explore the metadata in the Neptune app:\n", "step": null, "ts": 1696870524.1078603}]}, "version": 184}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-333/metadata\n", "step": null, "ts": 1696870524.10886}]}, "version": 185}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Shutting down background jobs, please wait a moment...\n", "step": null, "ts": 1696870524.10886}]}, "version": 186}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Done!\n", "step": null, "ts": 1696870524.327869}]}, "version": 187}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "f6467f4f", "stdout"], "values": [{"value": "Waiting for the remaining 4 operations to synchronize with Neptune. Do not kill this process.\n", "step": null, "ts": 1696870524.3288696}]}, "version": 188}

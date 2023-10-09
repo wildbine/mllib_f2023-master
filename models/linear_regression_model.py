@@ -1,18 +1,28 @@
 import sys
 import numpy as np
+
+import utils.metrics
 from configs.linear_regression_cfg import cfg
+from logginig_example import generate_experiment_name
 from utils.enums import TrainType
-#from logs.Logger import Logger
+from logs.Logger import Logger
 import cloudpickle
+
 
 class LinearRegression():
 
-    def __init__(self, base_functions: list, learning_rate: float, reg_coefficient: float, experiment_name : str):
-        self.weights = np.random.randn(len(base_functions)+1)
+    def __init__(self, base_functions: list, learning_rate: float, reg_coefficient: float, experiment_name: str):
+        self.weights = np.random.randn(len(base_functions) + 1)
         self.base_functions = base_functions
         self.learning_rate = learning_rate
         self.reg_coefficient = reg_coefficient
-        #self.neptune_logger = Logger(cfg.env_path, cfg.project_name, experiment_name)
+        self.neptune_logger = Logger(cfg.env_path, cfg.project_name, experiment_name)
+        experiment_name, base_function_str = generate_experiment_name(base_functions, reg_coefficient, learning_rate)
+        self.neptune_logger.log_hyperparameters(params={
+            'base_function': base_function_str,
+            'regularisation_coefficient': reg_coefficient,
+            'learning_rate': learning_rate
+        })
 
     # Methods related to the Normal EquationD:\PyCharmProjects\pyProjects\mllib_f2023-master\venv\Scripts\activate.bat
     # pip install pandas~=1.3.5
@@ -89,18 +99,7 @@ class LinearRegression():
 
             TODO: Implement this method. Calculate  Φ^+ using _pseudoinverse_matrix function
         """
-        # Рассчитываем оптимальные веса, используя нормальное уравнение
-        if self.reg_coefficient == 0.0:
-            self.weights = pseudoinverse_plan_matrix @ targets
-        else:
-            # Если regularization_lambda больше 0, выполняется решение с использованием L2 регуляризации
-            # Создаем единичную матрицу размером pseudoinverse_plan_matrix.shape[1]
-            I = np.eye(pseudoinverse_plan_matrix.shape[1])
-
-            # Решаем систему линейных уравнений для определения весов с регуляризацией
-            self.weights = np.linalg.solve(
-                pseudoinverse_plan_matrix.T @ pseudoinverse_plan_matrix + self.reg_coefficient * I,
-                pseudoinverse_plan_matrix.T @ targets)
+        self.weights = pseudoinverse_plan_matrix @ targets
 
     # General methods
     def _plan_matrix(self, inputs: np.ndarray) -> np.ndarray:
@@ -122,7 +121,7 @@ class LinearRegression():
             TODO: Implement this method using one loop over the base functions.
 
         """
-        N, D = inputs.shape  # Получаем размеры входных данных
+        N, D = (np.asarray(inputs)).shape  # Получаем размеры входных данных
         M = len(self.base_functions)  # Получаем количество базисных функций + 1
 
         # Создаем пустую матрицу плана Φ с размерами (N, M+1)
@@ -133,7 +132,8 @@ class LinearRegression():
         design_matrix_col_1[:, 0] = 1
 
         # Заполняем остальные столбцы матрицы плана Φ с использованием базовых функций
-        design_matrix = np.apply_along_axis(lambda row: [func(val) for func, val in zip(self.base_functions, row)], 1, inputs)
+        design_matrix = np.apply_along_axis(lambda row: [func(val) for func, val in zip(self.base_functions, row)], 1,
+                                            inputs)
         result_matrix = np.column_stack((design_matrix_col_1, design_matrix))
         return result_matrix
 
@@ -191,7 +191,7 @@ class LinearRegression():
 
         # Добавляем компоненту регуляризации, если reg_coefficient не равен нулю
         if self.reg_coefficient != 0:
-            gradient[1:M+1] += 2 * self.reg_coefficient * self.weights[1:M+1]
+            gradient[1:M + 1] += 2 * self.reg_coefficient * self.weights[1:M + 1]
 
         return gradient
 
@@ -223,6 +223,7 @@ class LinearRegression():
 
         # Вычисляем сумму квадратов ошибок (mse) без регуляризации
         mse = (1 / N) * np.sum(errors ** 2)
+        mse = np.clip(mse, -1e10, 1e10)
 
         # Вычисляем компоненту регуляризации
         regularization_term = self.reg_coefficient * self.weights.T @ self.weights
@@ -236,25 +237,39 @@ class LinearRegression():
         """Train the model using either the normal equation or gradient descent based on the configuration.
         TODO: Complete the training process.
         """
+        train_type = TrainType(cfg.train_type)
+        train_type_name = train_type.name
         plan_matrix = self._plan_matrix(inputs)
-        if cfg.train_type.value == TrainType.normal_equation.value:
-            pseudoinverse_plan_matrix = self._pseudoinverse_matrix(plan_matrix)
+        if cfg.train_type == TrainType.normal_equation:
+            pseudoinverse_plan_matrix = self._pseudoinverse_matrix(plan_matrix, True)
             self._calculate_weights(pseudoinverse_plan_matrix, targets)
+            # cost = self.calculate_cost_function(plan_matrix, targets)
+            # self.neptune_logger.save_param('normal_equation', 'cost_function', cost)
+            cost = self.calculate_cost_function(plan_matrix, targets)
+            self.neptune_logger.save_param(str(train_type_name), 'mse',
+                                           utils.metrics.MSE(self.__call__(inputs), targets))
+            self.neptune_logger.save_param(str(train_type_name), 'cost_function', cost)
         else:
             for e in range(cfg.epoch):
                 gradient = self._calculate_gradient(plan_matrix, targets)
                 self.weights -= self.learning_rate * gradient
-
-                if e % 10 == 0:
-                    # Calculate and print the cost function's value
-                    cost = self.calculate_cost_function(plan_matrix, targets)
-                    print(f"Epoch {e + 1}/{cfg.epoch}, Cost: {cost}")
+                # Calculate and print the cost function's value
+                cost = self.calculate_cost_function(plan_matrix, targets)
+                self.neptune_logger.save_param(str(train_type_name), 'mse',
+                                               utils.metrics.MSE(self.__call__(inputs), targets))
+                self.neptune_logger.save_param(str(train_type_name), 'cost_function', cost)
+        self.neptune_logger.log_final_val_mse(utils.metrics.MSE(self.__call__(inputs), targets))
 
     def __call__(self, inputs: np.ndarray) -> np.ndarray:
         """return prediction of the model"""
         plan_matrix = self._plan_matrix(inputs)
         predictions = self.calculate_model_prediction(plan_matrix)
         return predictions
+
+    def __getstate__(self):
+        state = self.__dict__.copy()
+        del state['neptune_logger']
+        return state
 
     def save(self, filepath):
         with open(filepath, 'wb') as f:

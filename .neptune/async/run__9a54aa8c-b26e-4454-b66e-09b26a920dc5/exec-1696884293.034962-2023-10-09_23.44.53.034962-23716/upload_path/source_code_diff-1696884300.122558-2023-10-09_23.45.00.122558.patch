@@ -1,0 +1,316 @@
+diff --git a/configs/__pycache__/linear_regression_cfg.cpython-311.pyc b/configs/__pycache__/linear_regression_cfg.cpython-311.pyc
+index b87f5da..95277d5 100644
+Binary files a/configs/__pycache__/linear_regression_cfg.cpython-311.pyc and b/configs/__pycache__/linear_regression_cfg.cpython-311.pyc differ
+diff --git a/configs/linear_regression_cfg.py b/configs/linear_regression_cfg.py
+index 99b2026..88151cc 100644
+--- a/configs/linear_regression_cfg.py
++++ b/configs/linear_regression_cfg.py
+@@ -30,4 +30,4 @@ cfg.epoch = 100
+ 
+ #cfg.exp_name = ''
+ cfg.env_path = '' # Путь до файла .env где будет храниться api_token.
+-cfg.project_name = 'linear_regression'
+\ No newline at end of file
++cfg.project_name = 'linear-regression'
+\ No newline at end of file
+diff --git a/datasets/__pycache__/base_dataset.cpython-311.pyc b/datasets/__pycache__/base_dataset.cpython-311.pyc
+index 51fa15a..8fcc81e 100644
+Binary files a/datasets/__pycache__/base_dataset.cpython-311.pyc and b/datasets/__pycache__/base_dataset.cpython-311.pyc differ
+diff --git a/execute.py b/execute.py
+index 9b177a4..530564e 100644
+--- a/execute.py
++++ b/execute.py
+@@ -5,6 +5,9 @@
+ #  4. Train the model using the training data.
+ #  5. Evaluate the trained model on the validation set,train set, test set. You might consider metrics like Mean Squared Error (MSE) for evaluation.
+ #  6. Plot the model's predictions against the actual values from the validation set using the `Visualisation` class.
++import sys
++
++from utils.enums import TrainType
+ 
+ if __name__ == '__main__':
+     from datasets.linear_regression_dataset import LinRegDataset
+@@ -12,16 +15,62 @@ if __name__ == '__main__':
+     from configs.linear_regression_cfg import cfg
+     import random
+     import numpy as np
++    from logginig_example import generate_experiment_name
++    import cloudpickle
+ 
+-    lin_reg_dataset = LinRegDataset(inputs_cols=['x_0', 'x_1', 'x_2'], target_cols='targets')
++    """lin_reg_dataset = LinRegDataset(inputs_cols=['x_0', 'x_1', 'x_2'], target_cols='targets')
+     reg_coeff = random.uniform(0, 1)
+     learning_rate = random.uniform(0, 1)
+-    """
+-    либо я обрезаю количество базисных функций здесь, либо обрезаю их на этапе создания матрицы плана
+-    пожалуй, в методе _plan_matrix я также позабочусь об этом, если вдруг захотят передать все
+-    базисные функции
+-    """
++
+     base_functions = random.sample(cfg.base_functions, (np.asarray(lin_reg_dataset.training_inputs)).shape[1])
+ 
+     lin_regression = LinearRegression(base_functions, learning_rate, reg_coeff, "1st")
+     lin_regression.train(np.asarray(lin_reg_dataset.training_inputs),np.asarray(lin_reg_dataset.training_targets))
++    """
++    models = []
++
++    best_valid_mse = 1e1000
++    best_number_valid_mse = 0
++
++    num_models = 30
++    cfg.project_name = 'wildbine/linear-regression'
++    for j in range(num_models):
++        #подбираем гиперпараметры
++        learning_rate = np.random.uniform(0.001, 0.01)
++        reg_coefficient = np.random.uniform(0.001, 0.01)
++        cfg.epoch = np.random.randint(1000, 10000)
++        train_types = [TrainType.gradient_descent, TrainType.normal_equation]
++        cfg.train_type = np.random.choice(train_types)
++        total_percent = 1
++        cfg.train_set_percent = np.random.uniform(0.5, 0.8)
++        cfg.valid_set_percent = total_percent - cfg.train_set_percent - 0.1
++
++        lin_reg_dataset = LinRegDataset(inputs_cols=['x_0', 'x_1', 'x_2'], target_cols='targets')
++
++        base_functions = random.sample(cfg.base_functions, (np.asarray(lin_reg_dataset.training_inputs)).shape[1])
++
++        experiment_name, base_function_str = generate_experiment_name(base_functions, reg_coefficient, learning_rate)
++
++
++        model = LinearRegression(base_functions, learning_rate, reg_coefficient, experiment_name)
++
++
++        model.train(np.asarray(lin_reg_dataset.training_inputs),np.asarray(lin_reg_dataset.training_targets))
++
++
++        models.append(model)
++
++        valid_predictions = model.calculate_model_prediction(model._plan_matrix(lin_reg_dataset.valid_inputs))
++        valid_targets = np.asarray(lin_reg_dataset.valid_targets)
++        mse = np.mean((valid_predictions - valid_targets) ** 2)
++        if (mse < best_valid_mse - np.finfo(np.float64).eps):
++            best_valid_mse = mse
++            best_number_valid_mse = j
++        model.neptune_logger.save_param('valid', 'mse', mse)
++        model.neptune_logger.save_param('valid', 'cost_function',
++                                        model.calculate_cost_function(
++                                            model._plan_matrix(
++                                                lin_reg_dataset.valid_inputs), lin_reg_dataset.valid_targets))
++    #models[best_number_valid_mse].save('model.pkl')
++    with open('saved_models/'+str(mse), 'wb') as f:
++        cloudpickle.dump(models[best_number_valid_mse], f)
+\ No newline at end of file
+diff --git a/logginig_example.py b/logginig_example.py
+index 26e4b04..dded97e 100644
+--- a/logginig_example.py
++++ b/logginig_example.py
+@@ -14,29 +14,30 @@ def generate_experiment_name(base_functions: list, reg_coeff: float, lr: float)
+ 
+     return name, concatenated
+ 
+-for i in range(3):
+-    x_0, x_1 =  random.randint(0,4), random.randint(1,4)
+-    f1 = lambda x: x + x_0
+-    f2 = lambda x: x * x_1
+-
+-    reg_coeff = random.uniform(0,1)
+-    learning_rate = random.uniform(0,1)
+-    base_function = [f1, f2]
+-
+-    experiment_name,base_function_str  = generate_experiment_name(base_function, reg_coeff, learning_rate)
+-    logger = Logger(env_path='env.env', project="kkmle/Linear-Regression", experiment_name=experiment_name)
+-
+-    logger.log_hyperparameters(params = {
+-        'base_function': base_function_str,
+-        'regularisation_coefficient': reg_coeff,
+-        'learning_rate': learning_rate
+-    })
+-
+-    for j in range(100):
+-        logger.save_param('train','mse',random.uniform(0,0.001))
+-        logger.save_param('train','loss',random.uniform(0,0.001))
+-        logger.save_param('valid', 'mse', random.uniform(0, 0.001))
+-        logger.save_param('valid', 'loss', random.uniform(0, 0.001))
+-    logger.log_final_val_mse(random.uniform(0, 0.001))
++if __name__ == '__main__':
++    for i in range(3):
++        x_0, x_1 =  random.randint(0,4), random.randint(1,4)
++        f1 = lambda x: x + x_0
++        f2 = lambda x: x * x_1
++
++        reg_coeff = random.uniform(0,1)
++        learning_rate = random.uniform(0,1)
++        base_function = [f1, f2]
++
++        experiment_name,base_function_str  = generate_experiment_name(base_function, reg_coeff, learning_rate)
++        logger = Logger(env_path='env.env', project="wildbine/Linear-Reg", experiment_name=experiment_name)
++
++        logger.log_hyperparameters(params = {
++            'base_function': base_function_str,
++            'regularisation_coefficient': reg_coeff,
++            'learning_rate': learning_rate
++        })
++
++        for j in range(100):
++            logger.save_param('train','mse',random.uniform(0,0.001))
++            logger.save_param('train','loss',random.uniform(0,0.001))
++            logger.save_param('valid', 'mse', random.uniform(0, 0.001))
++            logger.save_param('valid', 'loss', random.uniform(0, 0.001))
++        logger.log_final_val_mse(random.uniform(0, 0.001))
+ 
+ 
+diff --git a/logs/Logger.py b/logs/Logger.py
+index 7320a01..1eee610 100644
+--- a/logs/Logger.py
++++ b/logs/Logger.py
+@@ -9,7 +9,7 @@ class Logger():
+         load_dotenv(env_path)
+         self.run = neptune.init_run(
+             project=project,
+-            api_token=os.environ['NEPTUNE_APIKEY'],
++            api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI0N2QwNWRjYy02YThjLTQ2Y2QtOWE4ZS04ZTM4ZDExMTU1NmIifQ==",
+             name=experiment_name
+         )
+ 
+diff --git a/logs/__pycache__/Logger.cpython-311.pyc b/logs/__pycache__/Logger.cpython-311.pyc
+index e898f25..308901b 100644
+Binary files a/logs/__pycache__/Logger.cpython-311.pyc and b/logs/__pycache__/Logger.cpython-311.pyc differ
+diff --git a/models/__pycache__/linear_regression_model.cpython-311.pyc b/models/__pycache__/linear_regression_model.cpython-311.pyc
+index b0d4dec..8cf9cb8 100644
+Binary files a/models/__pycache__/linear_regression_model.cpython-311.pyc and b/models/__pycache__/linear_regression_model.cpython-311.pyc differ
+diff --git a/models/linear_regression_model.py b/models/linear_regression_model.py
+index 569c176..0e05a1c 100644
+--- a/models/linear_regression_model.py
++++ b/models/linear_regression_model.py
+@@ -1,19 +1,27 @@
+ import sys
+ import numpy as np
++
++import utils.metrics
+ from configs.linear_regression_cfg import cfg
++from logginig_example import generate_experiment_name
+ from utils.enums import TrainType
+-#from logs.Logger import Logger
++from logs.Logger import Logger
+ import cloudpickle
+ 
+ class LinearRegression():
+ 
+     def __init__(self, base_functions: list, learning_rate: float, reg_coefficient: float, experiment_name : str):
+-        self.weights = np.random.randn(len(base_functions)+1)
++        self.weights = np.random.randn(len(base_functions) + 1)
+         self.base_functions = base_functions
+         self.learning_rate = learning_rate
+         self.reg_coefficient = reg_coefficient
+-        #self.neptune_logger = Logger(cfg.env_path, cfg.project_name, experiment_name)
+-
++        self.neptune_logger = Logger(cfg.env_path, cfg.project_name, experiment_name)
++        experiment_name, base_function_str = generate_experiment_name(base_functions, reg_coefficient, learning_rate)
++        self.neptune_logger.log_hyperparameters(params={
++            'base_function': base_function_str,
++            'regularisation_coefficient': reg_coefficient,
++            'learning_rate': learning_rate
++        })
+     # Methods related to the Normal EquationD:\PyCharmProjects\pyProjects\mllib_f2023-master\venv\Scripts\activate.bat
+     # pip install pandas~=1.3.5
+ 
+@@ -89,18 +97,7 @@ class LinearRegression():
+ 
+             TODO: Implement this method. Calculate  Φ^+ using _pseudoinverse_matrix function
+         """
+-        # Рассчитываем оптимальные веса, используя нормальное уравнение
+-        if self.reg_coefficient == 0.0:
+-            self.weights = pseudoinverse_plan_matrix @ targets
+-        else:
+-            # Если regularization_lambda больше 0, выполняется решение с использованием L2 регуляризации
+-            # Создаем единичную матрицу размером pseudoinverse_plan_matrix.shape[1]
+-            I = np.eye(pseudoinverse_plan_matrix.shape[1])
+-
+-            # Решаем систему линейных уравнений для определения весов с регуляризацией
+-            self.weights = np.linalg.solve(
+-                pseudoinverse_plan_matrix.T @ pseudoinverse_plan_matrix + self.reg_coefficient * I,
+-                pseudoinverse_plan_matrix.T @ targets)
++        self.weights = pseudoinverse_plan_matrix @ targets
+ 
+     # General methods
+     def _plan_matrix(self, inputs: np.ndarray) -> np.ndarray:
+@@ -122,7 +119,7 @@ class LinearRegression():
+             TODO: Implement this method using one loop over the base functions.
+ 
+         """
+-        N, D = inputs.shape  # Получаем размеры входных данных
++        N, D = (np.asarray(inputs)).shape  # Получаем размеры входных данных
+         M = len(self.base_functions)  # Получаем количество базисных функций + 1
+ 
+         # Создаем пустую матрицу плана Φ с размерами (N, M+1)
+@@ -223,6 +220,7 @@ class LinearRegression():
+ 
+         # Вычисляем сумму квадратов ошибок (mse) без регуляризации
+         mse = (1 / N) * np.sum(errors ** 2)
++        mse = np.clip(mse, -1e10, 1e10)
+ 
+         # Вычисляем компоненту регуляризации
+         regularization_term = self.reg_coefficient * self.weights.T @ self.weights
+@@ -236,19 +234,27 @@ class LinearRegression():
+         """Train the model using either the normal equation or gradient descent based on the configuration.
+         TODO: Complete the training process.
+         """
++        train_type = TrainType(cfg.train_type)
++        train_type_name = train_type.name
+         plan_matrix = self._plan_matrix(inputs)
+-        if cfg.train_type.value == TrainType.normal_equation.value:
+-            pseudoinverse_plan_matrix = self._pseudoinverse_matrix(plan_matrix)
++        if cfg.train_type == TrainType.normal_equation:
++            pseudoinverse_plan_matrix = self._pseudoinverse_matrix(plan_matrix, True)
+             self._calculate_weights(pseudoinverse_plan_matrix, targets)
++            #cost = self.calculate_cost_function(plan_matrix, targets)
++            #self.neptune_logger.save_param('normal_equation', 'cost_function', cost)
++            cost = self.calculate_cost_function(plan_matrix, targets)
++            self.neptune_logger.save_param(str(train_type_name), 'mse',
++                                           utils.metrics.MSE(self.__call__(inputs), targets))
++            self.neptune_logger.save_param(str(train_type_name), 'cost_function', cost)
+         else:
+             for e in range(cfg.epoch):
+                 gradient = self._calculate_gradient(plan_matrix, targets)
+                 self.weights -= self.learning_rate * gradient
+-
+-                if e % 10 == 0:
+-                    # Calculate and print the cost function's value
+-                    cost = self.calculate_cost_function(plan_matrix, targets)
+-                    print(f"Epoch {e + 1}/{cfg.epoch}, Cost: {cost}")
++                # Calculate and print the cost function's value
++                cost = self.calculate_cost_function(plan_matrix, targets)
++                self.neptune_logger.save_param(str(train_type_name), 'mse', utils.metrics.MSE(self.__call__(inputs), targets))
++                self.neptune_logger.save_param(str(train_type_name), 'cost_function', cost)
++        self.neptune_logger.log_final_val_mse(utils.metrics.MSE(self.__call__(inputs), targets))
+ 
+     def __call__(self, inputs: np.ndarray) -> np.ndarray:
+         """return prediction of the model"""
+@@ -256,6 +262,11 @@ class LinearRegression():
+         predictions = self.calculate_model_prediction(plan_matrix)
+         return predictions
+ 
++    def __getstate__(self):
++        state = self.__dict__.copy()
++        del state['neptune_logger']
++        return state
++
+     def save(self, filepath):
+         with open(filepath, 'wb') as f:
+             cloudpickle.dump(self, f)
+diff --git a/utils/metrics.py b/utils/metrics.py
+index 0f7f358..83dec47 100644
+--- a/utils/metrics.py
++++ b/utils/metrics.py
+@@ -15,6 +15,7 @@ def MSE(predictions: np.ndarray, targets: np.ndarray) -> float:
+     - predictions are the predicted values by the model
+     - targets are the true values
+     TODO implement this function. This function is expected to be implemented without the use of loops.
+-
+     """
+-    pass
+\ No newline at end of file
++    mse = np.mean((predictions - targets) ** 2)
++    mse = np.clip(mse, -1e10, 1e10)
++    return mse
+\ No newline at end of file

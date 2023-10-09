@@ -1,0 +1,104 @@
+{"obj": {"type": "AssignString", "path": ["sys", "name"], "value": "Reg0.009158639948888714_LR0.0059949861942525575_FuncHasha5eedd"}, "version": 1}
+{"obj": {"type": "AssignString", "path": ["sys", "description"], "value": ""}, "version": 2}
+{"obj": {"type": "AssignString", "path": ["monitoring", "43e0afa8", "hostname"], "value": "DESKTOP-F0FFPV5"}, "version": 3}
+{"obj": {"type": "AssignString", "path": ["sys", "hostname"], "value": "DESKTOP-F0FFPV5"}, "version": 4}
+{"obj": {"type": "AssignString", "path": ["monitoring", "43e0afa8", "pid"], "value": "23716"}, "version": 5}
+{"obj": {"type": "AssignString", "path": ["monitoring", "43e0afa8", "tid"], "value": "23640"}, "version": 6}
+{"obj": {"type": "AssignBool", "path": ["sys", "failed"], "value": false}, "version": 7}
+{"obj": {"type": "ClearStringLog", "path": ["monitoring", "43e0afa8", "stdout"]}, "version": 8}
+{"obj": {"type": "ClearStringLog", "path": ["monitoring", "43e0afa8", "stderr"]}, "version": 9}
+{"obj": {"type": "AssignString", "path": ["source_code", "entrypoint"], "value": "execute.py"}, "version": 10}
+{"obj": {"type": "UploadFileSet", "path": ["source_code", "files"], "file_globs": ["D:\\PyCharmProjects\\pyProjects\\mllib_f2023-master\\execute.py"], "reset": "False"}, "version": 11}
+{"obj": {"type": "UploadFile", "path": ["source_code", "diff"], "ext": "patch", "file_path": null, "tmp_file_name": "source_code_diff-1696884157.922011-2023-10-09_23.42.37.922011.patch", "clean_after_upload": false}, "version": 12}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "43e0afa8", "cpu"], "min": 0.0, "max": 100.0, "unit": "%"}, "version": 13}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "43e0afa8", "cpu"]}, "version": 14}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "43e0afa8", "memory"], "min": 0.0, "max": 31.85687255859375, "unit": "GB"}, "version": 15}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "43e0afa8", "memory"]}, "version": 16}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "43e0afa8", "gpu"], "min": 0.0, "max": 100.0, "unit": "%"}, "version": 17}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "43e0afa8", "gpu"]}, "version": 18}
+{"obj": {"type": "ConfigFloatSeries", "path": ["monitoring", "43e0afa8", "gpu_memory"], "min": 0.0, "max": 8.0, "unit": "GB"}, "version": 19}
+{"obj": {"type": "ClearFloatLog", "path": ["monitoring", "43e0afa8", "gpu_memory"]}, "version": 20}
+{"obj": {"type": "AssignString", "path": ["hyperparameters", "base_function"], "value": "log_func = lambda x: np.log(x)\nexp_func = lambda x: np.exp(x)\nsin_func = lambda x: np.sin(x)"}, "version": 21}
+{"obj": {"type": "AssignFloat", "path": ["hyperparameters", "regularisation_coefficient"], "value": 0.009158639948888714}, "version": 22}
+{"obj": {"type": "AssignFloat", "path": ["hyperparameters", "learning_rate"], "value": 0.0059949861942525575}, "version": 23}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 7.1, "step": null, "ts": 1696884157.933013}]}, "version": 24}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.286762237548828, "step": null, "ts": 1696884157.933013}]}, "version": 25}
+{"obj": {"type": "LogFloats", "path": ["normal_equation", "mse"], "values": [{"value": 0.32013409513523844, "step": null, "ts": 1696884157.9420118}]}, "version": 26}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 37.0, "step": null, "ts": 1696884157.933013}]}, "version": 27}
+{"obj": {"type": "LogFloats", "path": ["normal_equation", "cost_function"], "values": [{"value": 0.43481143181563897, "step": null, "ts": 1696884157.9420118}]}, "version": 28}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.8925018310546875, "step": null, "ts": 1696884157.933013}]}, "version": 29}
+{"obj": {"type": "AssignFloat", "path": ["final_metrics", "validation_mse"], "value": 0.32013409513523844}, "version": 30}
+{"obj": {"type": "LogFloats", "path": ["valid", "mse"], "values": [{"value": 0.6712943384863803, "step": null, "ts": 1696884157.946012}]}, "version": 31}
+{"obj": {"type": "LogFloats", "path": ["valid", "cost_function"], "values": [{"value": 0.7859716751667809, "step": null, "ts": 1696884157.9470115}]}, "version": 32}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-10\n", "step": null, "ts": 1696884158.4399908}]}, "version": 33}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 14.5, "step": null, "ts": 1696884167.9478314}]}, "version": 34}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.34185791015625, "step": null, "ts": 1696884167.9478314}]}, "version": 35}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 37.0, "step": null, "ts": 1696884167.9478314}]}, "version": 36}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.8923797607421875, "step": null, "ts": 1696884167.9478314}]}, "version": 37}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-11\n", "step": null, "ts": 1696884175.375162}]}, "version": 38}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-12\n", "step": null, "ts": 1696884175.8791602}]}, "version": 39}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 18.5, "step": null, "ts": 1696884177.972155}]}, "version": 40}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.310848236083984, "step": null, "ts": 1696884177.972155}]}, "version": 41}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 37.0, "step": null, "ts": 1696884177.972155}]}, "version": 42}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.8954315185546875, "step": null, "ts": 1696884177.972155}]}, "version": 43}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 15.5, "step": null, "ts": 1696884187.9908812}]}, "version": 44}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 16.734264373779297, "step": null, "ts": 1696884187.9908812}]}, "version": 45}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 37.0, "step": null, "ts": 1696884187.9908812}]}, "version": 46}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.8920135498046875, "step": null, "ts": 1696884187.9908812}]}, "version": 47}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-13\n", "step": null, "ts": 1696884194.7058568}]}, "version": 48}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-14\n", "step": null, "ts": 1696884195.2713065}]}, "version": 49}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-15\n", "step": null, "ts": 1696884195.7849243}]}, "version": 50}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 34.3, "step": null, "ts": 1696884198.0077047}]}, "version": 51}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 16.813373565673828, "step": null, "ts": 1696884198.0077047}]}, "version": 52}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 46.0, "step": null, "ts": 1696884198.0077047}]}, "version": 53}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.9227294921875, "step": null, "ts": 1696884198.0077047}]}, "version": 54}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 28.4, "step": null, "ts": 1696884208.0365036}]}, "version": 55}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 16.80541229248047, "step": null, "ts": 1696884208.0365036}]}, "version": 56}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 40.0, "step": null, "ts": 1696884208.0365036}]}, "version": 57}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.8831405639648438, "step": null, "ts": 1696884208.0365036}]}, "version": 58}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-16\n", "step": null, "ts": 1696884210.6395042}]}, "version": 59}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-17\n", "step": null, "ts": 1696884216.529855}]}, "version": 60}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-18\n", "step": null, "ts": 1696884217.0418608}]}, "version": 61}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-19\n", "step": null, "ts": 1696884217.5667942}]}, "version": 62}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 15.2, "step": null, "ts": 1696884218.0487924}]}, "version": 63}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 16.833423614501953, "step": null, "ts": 1696884218.0487924}]}, "version": 64}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 41.0, "step": null, "ts": 1696884218.0487924}]}, "version": 65}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.892974853515625, "step": null, "ts": 1696884218.0487924}]}, "version": 66}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-20\n", "step": null, "ts": 1696884223.0377722}]}, "version": 67}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-21\n", "step": null, "ts": 1696884223.539784}]}, "version": 68}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-22\n", "step": null, "ts": 1696884224.0677931}]}, "version": 69}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-23\n", "step": null, "ts": 1696884224.5666902}]}, "version": 70}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 18.5, "step": null, "ts": 1696884228.0576813}]}, "version": 71}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 16.82178497314453, "step": null, "ts": 1696884228.0576813}]}, "version": 72}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 40.0, "step": null, "ts": 1696884228.0576813}]}, "version": 73}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.884246826171875, "step": null, "ts": 1696884228.0576813}]}, "version": 74}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 15.4, "step": null, "ts": 1696884238.079684}]}, "version": 75}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.61624526977539, "step": null, "ts": 1696884238.079684}]}, "version": 76}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 15.0, "step": null, "ts": 1696884238.079684}]}, "version": 77}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.890411376953125, "step": null, "ts": 1696884238.079684}]}, "version": 78}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 3.5, "step": null, "ts": 1696884248.0896764}]}, "version": 79}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.64922332763672, "step": null, "ts": 1696884248.0896764}]}, "version": 80}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 16.0, "step": null, "ts": 1696884248.0896764}]}, "version": 81}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.898956298828125, "step": null, "ts": 1696884248.0896764}]}, "version": 82}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-24\n", "step": null, "ts": 1696884252.6080477}]}, "version": 83}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 21.0, "step": null, "ts": 1696884258.0942569}]}, "version": 84}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.963966369628906, "step": null, "ts": 1696884258.0942569}]}, "version": 85}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 47.0, "step": null, "ts": 1696884258.0942569}]}, "version": 86}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.9865531921386719, "step": null, "ts": 1696884258.0942569}]}, "version": 87}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 12.6, "step": null, "ts": 1696884268.1062286}]}, "version": 88}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.958343505859375, "step": null, "ts": 1696884268.1062286}]}, "version": 89}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 19.0, "step": null, "ts": 1696884268.1062286}]}, "version": 90}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.9920234680175781, "step": null, "ts": 1696884268.1062286}]}, "version": 91}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 15.9, "step": null, "ts": 1696884278.1285834}]}, "version": 92}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.914581298828125, "step": null, "ts": 1696884278.1285834}]}, "version": 93}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 36.0, "step": null, "ts": 1696884278.1285834}]}, "version": 94}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.8915023803710938, "step": null, "ts": 1696884278.1285834}]}, "version": 95}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 16.5, "step": null, "ts": 1696884288.1478138}]}, "version": 96}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.940658569335938, "step": null, "ts": 1696884288.1478138}]}, "version": 97}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 23.0, "step": null, "ts": 1696884288.1478138}]}, "version": 98}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.93927001953125, "step": null, "ts": 1696884288.1478138}]}, "version": 99}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "cpu"], "values": [{"value": 6.3, "step": null, "ts": 1696884298.1545625}]}, "version": 100}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "memory"], "values": [{"value": 17.894725799560547, "step": null, "ts": 1696884298.1545625}]}, "version": 101}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu"], "values": [{"value": 29.0, "step": null, "ts": 1696884298.1545625}]}, "version": 102}
+{"obj": {"type": "LogFloats", "path": ["monitoring", "43e0afa8", "gpu_memory"], "values": [{"value": 1.93621826171875, "step": null, "ts": 1696884298.1545625}]}, "version": 103}
+{"obj": {"type": "LogStrings", "path": ["monitoring", "43e0afa8", "stdout"], "values": [{"value": "https://app.neptune.ai/wildbine/linear-regression/e/LIN-25\n", "step": null, "ts": 1696884300.1235592}]}, "version": 104}

@@ -15,6 +15,7 @@ def MSE(predictions: np.ndarray, targets: np.ndarray) -> float:
     - predictions are the predicted values by the model
     - targets are the true values
     TODO implement this function. This function is expected to be implemented without the use of loops.
-
     """
-    pass
+    mse = np.mean((predictions - targets) ** 2)
+    mse = np.clip(mse, -1e10, 1e10)
+    return mse

@@ -30,4 +30,4 @@ cfg.epoch = 100
 
 #cfg.exp_name = ''
 cfg.env_path = '' # Путь до файла .env где будет храниться api_token.
-cfg.project_name = 'linear_regression'
+cfg.project_name = 'linear-regression'
