@@ -1,12 +1,12 @@
 import numpy as np
 from utils.common_functions import read_dataframe_file
-from easydict import EasyDict
 from datasets.base_dataset import BaseDataset
 from utils.enums import SetType
+from configs.linear_regression_cfg import cfg
 
 class LinRegDataset(BaseDataset):
 
-    def __init__(self, cfg: EasyDict, inputs_cols='inputs', target_cols='targets'):
+    def __init__(self, inputs_cols='inputs', target_cols='targets'):
         super(LinRegDataset, self).__init__(cfg.train_set_percent,cfg.valid_set_percent)
 
         dataframe = read_dataframe_file(cfg.dataframe_path)
@@ -17,6 +17,8 @@ class LinRegDataset(BaseDataset):
 
         # divide into sets
         self._divide_into_sets()
+
+
 
     @property
     def inputs(self):
@@ -43,4 +45,4 @@ class LinRegDataset(BaseDataset):
 if __name__ == '__main__':
     from configs.linear_regression_cfg import cfg
 
-    lin_reg_dataset = LinRegDataset(cfg,['x_0','x_1','x_2'])
+    lin_reg_dataset = LinRegDataset(inputs_cols=['x_0', 'x_1', 'x_2'], target_cols='targets')

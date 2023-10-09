@@ -1,6 +1,6 @@
 import numpy as np
 from abc import ABC, abstractmethod
-
+import random as rnd
 
 class BaseDataset(ABC):
 
@@ -22,6 +22,13 @@ class BaseDataset(ABC):
 
 
     def _divide_into_sets(self):
-        # define self.inputs_train, self.targets_train, self.inputs_valid, self.targets_valid,
-        #  self.inputs_test, self.targets_test
-        pass
+        data = list((zip(self.inputs, self.targets)))
+        rnd.shuffle(data)
+        n = len(data)
+        training_count = int(self.train_set_percent * n)
+        valid_count = int(self.valid_set_percent * n)
+        training_set = data[:training_count]
+        valid_set = data[training_count:training_count + valid_count]
+        # распаковали уже разбитые на дизъюнктное объединение данные
+        self.training_inputs, self.training_targets = zip(*training_set)
+        self.valid_inputs, self.valid_targets = zip(*valid_set)

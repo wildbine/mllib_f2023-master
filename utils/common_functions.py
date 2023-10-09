@@ -3,7 +3,7 @@ from typing import Union
 
 def read_dataframe_file(path_to_file:str) -> Union[pd.DataFrame,None]:
     if path_to_file.endswith('csv'):
-        return pd.read_csv(path_to_file)
+        return pd.read_csv(path_to_file, encoding='UTF-8')
     elif path_to_file.endswith('pickle'):
         return pd.read_pickle(path_to_file)
     else:

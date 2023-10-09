@@ -2,7 +2,7 @@ import sys
 import numpy as np
 from configs.linear_regression_cfg import cfg
 from utils.enums import TrainType
-from logs.Logger import Logger
+#from logs.Logger import Logger
 import cloudpickle
 
 class LinearRegression():
@@ -12,12 +12,12 @@ class LinearRegression():
         self.base_functions = base_functions
         self.learning_rate = learning_rate
         self.reg_coefficient = reg_coefficient
-        self.neptune_logger = Logger(cfg.env_path, cfg.project_name, experiment_name)
+        #self.neptune_logger = Logger(cfg.env_path, cfg.project_name, experiment_name)
 
     # Methods related to the Normal EquationD:\PyCharmProjects\pyProjects\mllib_f2023-master\venv\Scripts\activate.bat
     # pip install pandas~=1.3.5
 
-    def _pseudoinverse_matrix(self, matrix: np.ndarray, regularization_lambda: float = 0.0, l2_regularization: bool = False) -> np.ndarray:
+    def _pseudoinverse_matrix(self, matrix: np.ndarray, l2_regularization: bool = False) -> np.ndarray:
         """Compute the pseudoinverse of a matrix using SVD.
 
         The pseudoinverse (Φ^+) of the design matrix Φ can be computed using the formula:
@@ -62,7 +62,7 @@ class LinearRegression():
         for i, singular_value in enumerate(sigma):
             if l2_regularization:
                 # L2 регуляризация (Tikhonov regularization)
-                regularization_term = regularization_lambda
+                regularization_term = self.reg_coefficient
             else:
                 # Без регуляризации (0 регуляризация)
                 regularization_term = 0.0
@@ -73,9 +73,8 @@ class LinearRegression():
         pseudo_inverse = Vt.T @ np.diag(sigma_inv) @ U.T
 
         return pseudo_inverse
-        pass
 
-    def _calculate_weights(self, pseudoinverse_plan_matrix: np.ndarray, targets: np.ndarray, regularization_lambda: float = 0.0) -> None:
+    def _calculate_weights(self, pseudoinverse_plan_matrix: np.ndarray, targets: np.ndarray) -> None:
         """Calculate the optimal weights using the normal equation.
 
             The weights (w) can be computed using the formula:
@@ -91,7 +90,7 @@ class LinearRegression():
             TODO: Implement this method. Calculate  Φ^+ using _pseudoinverse_matrix function
         """
         # Рассчитываем оптимальные веса, используя нормальное уравнение
-        if regularization_lambda == 0.0:
+        if self.reg_coefficient == 0.0:
             self.weights = pseudoinverse_plan_matrix @ targets
         else:
             # Если regularization_lambda больше 0, выполняется решение с использованием L2 регуляризации
@@ -100,9 +99,8 @@ class LinearRegression():
 
             # Решаем систему линейных уравнений для определения весов с регуляризацией
             self.weights = np.linalg.solve(
-                pseudoinverse_plan_matrix.T @ pseudoinverse_plan_matrix + regularization_lambda * I,
+                pseudoinverse_plan_matrix.T @ pseudoinverse_plan_matrix + self.reg_coefficient * I,
                 pseudoinverse_plan_matrix.T @ targets)
-        pass
 
     # General methods
     def _plan_matrix(self, inputs: np.ndarray) -> np.ndarray:
@@ -124,7 +122,20 @@ class LinearRegression():
             TODO: Implement this method using one loop over the base functions.
 
         """
-        pass
+        N, D = inputs.shape  # Получаем размеры входных данных
+        M = len(self.base_functions)  # Получаем количество базисных функций + 1
+
+        # Создаем пустую матрицу плана Φ с размерами (N, M+1)
+        design_matrix_col_1 = np.zeros((N, 1))
+        design_matrix = np.zeros((N, M))
+
+        # Заполняем первый столбец матрицы плана Φ со значениями 1 (φ_0(x_i) = 1)
+        design_matrix_col_1[:, 0] = 1
+
+        # Заполняем остальные столбцы матрицы плана Φ с использованием базовых функций
+        design_matrix = np.apply_along_axis(lambda row: [func(val) for func, val in zip(self.base_functions, row)], 1, inputs)
+        result_matrix = np.column_stack((design_matrix_col_1, design_matrix))
+        return result_matrix
 
     def calculate_model_prediction(self, plan_matrix: np.ndarray) -> np.ndarray:
         """Calculate the predictions of the model.
@@ -145,7 +156,8 @@ class LinearRegression():
         TODO: Implement this method without using loop
 
         """
-        pass
+        y_pred = plan_matrix @ self.weights.T
+        return y_pred
 
     # Methods related to Gradient Descent
     def _calculate_gradient(self, plan_matrix: np.ndarray, targets: np.ndarray) -> np.ndarray:
@@ -169,9 +181,21 @@ class LinearRegression():
             TODO: Implement this method using matrix operations in numpy. a.T - transpose. Do not use loops
             TODO: Add regularisation
             """
-        pass
+        N = len(targets)  # Получаем количество образцов
+        M = plan_matrix.shape[1]  # Получаем количество базовых функций (M)
+        # Вычисляем ошибку (residuals) как разницу между предсказаниями и целевыми значениями
+        errors = plan_matrix @ self.weights.T - targets
 
-    def calculate_cost_function(self, plan_matrix, targets):
+        # Вычисляем градиент без регуляризации
+        gradient = (2 / N) * plan_matrix.T @ errors
+
+        # Добавляем компоненту регуляризации, если reg_coefficient не равен нулю
+        if self.reg_coefficient != 0:
+            gradient[1:M+1] += 2 * self.reg_coefficient * self.weights[1:M+1]
+
+        return gradient
+
+    def calculate_cost_function(self, plan_matrix, targets) -> float:
         """Calculate the cost function value for the current weights.
 
         The cost function E(w) represents the mean squared error and is given by:
@@ -192,7 +216,21 @@ class LinearRegression():
         TODO: Add regularisation
 
         """
-        pass
+        N = len(targets)  # Получаем количество образцов
+
+        # Вычисляем ошибку как разницу между предсказаниями и целевыми значениями
+        errors = targets - plan_matrix @ self.weights.T
+
+        # Вычисляем сумму квадратов ошибок (mse) без регуляризации
+        mse = (1 / N) * np.sum(errors ** 2)
+
+        # Вычисляем компоненту регуляризации
+        regularization_term = self.reg_coefficient * self.weights.T @ self.weights
+
+        # Общая функция стоимости с учетом регуляризации
+        cost = mse + regularization_term
+
+        return cost
 
     def train(self, inputs: np.ndarray, targets: np.ndarray) -> None:
         """Train the model using either the normal equation or gradient descent based on the configuration.
@@ -201,34 +239,21 @@ class LinearRegression():
         plan_matrix = self._plan_matrix(inputs)
         if cfg.train_type.value == TrainType.normal_equation.value:
             pseudoinverse_plan_matrix = self._pseudoinverse_matrix(plan_matrix)
-            # train process
             self._calculate_weights(pseudoinverse_plan_matrix, targets)
         else:
-            """
-            At each iteration of gradient descent, the weights are updated using the formula:
-        
-            w_{k+1} = w_k - γ * ∇_w E(w_k)
-        
-            Where:
-            - w_k is the current weight vector at iteration k.
-            - γ is the learning rate, determining the step size in the direction of the negative gradient.
-            - ∇_w E(w_k) is the gradient of the cost function E with respect to the weights w at iteration k.
-        
-            This iterative process aims to find the weights that minimize the cost function E(w).
-        """
-            for e in cfg.epoch:
-                gradient = self._calculate_gradient(plan_matrix,targets)
-                # update weights w_{k+1} = w_k - γ * ∇_w E(w_k)
+            for e in range(cfg.epoch):
+                gradient = self._calculate_gradient(plan_matrix, targets)
+                self.weights -= self.learning_rate * gradient
 
                 if e % 10 == 0:
-                    # TODO: Print the cost function's value.
-                    pass
+                    # Calculate and print the cost function's value
+                    cost = self.calculate_cost_function(plan_matrix, targets)
+                    print(f"Epoch {e + 1}/{cfg.epoch}, Cost: {cost}")
 
     def __call__(self, inputs: np.ndarray) -> np.ndarray:
         """return prediction of the model"""
         plan_matrix = self._plan_matrix(inputs)
         predictions = self.calculate_model_prediction(plan_matrix)
-
         return predictions
 
     def save(self, filepath):
