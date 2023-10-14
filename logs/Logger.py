@@ -9,7 +9,7 @@ class Logger():
         load_dotenv(env_path)
         self.run = neptune.init_run(
             project=project,
-            api_token="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI0N2QwNWRjYy02YThjLTQ2Y2QtOWE4ZS04ZTM4ZDExMTU1NmIifQ==",
+            api_token='eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI0N2QwNWRjYy02YThjLTQ2Y2QtOWE4ZS04ZTM4ZDExMTU1NmIifQ==',
             name=experiment_name
         )
 

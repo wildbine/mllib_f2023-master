@@ -31,7 +31,6 @@ if __name__ == '__main__':
     best_number_valid_mse = 0
 
     num_models = 30
-    cfg.project_name = 'wildbine/linear-regression'
     for j in range(num_models):
         # подбираем гиперпараметры
         learning_rate = np.random.uniform(0.001, 0.01)
@@ -45,7 +44,7 @@ if __name__ == '__main__':
 
         lin_reg_dataset = LinRegDataset(inputs_cols=['x_0', 'x_1', 'x_2'], target_cols='targets')
 
-        base_functions = random.sample(cfg.base_functions, (np.asarray(lin_reg_dataset.training_inputs)).shape[1])
+        base_functions = cfg.base_functions
 
         experiment_name, base_function_str = generate_experiment_name(base_functions, reg_coefficient, learning_rate)
 

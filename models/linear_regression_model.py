@@ -121,21 +121,20 @@ class LinearRegression():
             TODO: Implement this method using one loop over the base functions.
 
         """
-        N, D = (np.asarray(inputs)).shape  # Получаем размеры входных данных
-        M = len(self.base_functions)  # Получаем количество базисных функций + 1
+        N, D = np.asarray(inputs).shape  # Получаем размеры входных данных
+        M = len(self.base_functions) + 1  # Получаем количество базисных функций + 1
 
-        # Создаем пустую матрицу плана Φ с размерами (N, M+1)
-        design_matrix_col_1 = np.zeros((N, 1))
+        # Создаем пустую матрицу плана Φ с размерами (N, M)
         design_matrix = np.zeros((N, M))
 
         # Заполняем первый столбец матрицы плана Φ со значениями 1 (φ_0(x_i) = 1)
-        design_matrix_col_1[:, 0] = 1
+        design_matrix[:, 0] = 1
 
         # Заполняем остальные столбцы матрицы плана Φ с использованием базовых функций
-        design_matrix = np.apply_along_axis(lambda row: [func(val) for func, val in zip(self.base_functions, row)], 1,
-                                            inputs)
-        result_matrix = np.column_stack((design_matrix_col_1, design_matrix))
-        return result_matrix
+        for j, func in enumerate(self.base_functions):
+            design_matrix[:, j + 1] = np.apply_along_axis(func, 1, inputs)
+
+        return design_matrix
 
     def calculate_model_prediction(self, plan_matrix: np.ndarray) -> np.ndarray:
         """Calculate the predictions of the model.
